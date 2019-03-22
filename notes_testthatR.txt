@@ -1,0 +1,30 @@
+Chapitre 1:
+
+If you waste other people’s time with scrappy code, your reputation will be shot.
+
+The tricky part is that users will almost certainly use your code in ways that you didn’t imagine, and on datasets in different formats.
+
+If you are doing large scale data analysis, or writing code for other people, then you need to do more testing.
+
+Ideally, development-time tests should be written once and run lots of times.
+
+
+Chapitre 2
+Lorsque l'on utilise R et ses fonctions, certains comportent nous donne une alarme (warning) ou une erreur d'exécution. Ce sont des erreurs de _runtime_. Ce type d'erreur nous informent que nous n'utilisons pas adéquatement notre outil. Alors, lorsque nous programmons des comportement, nous devons aussi définir ce type d'erreur, les comportements normalement attendus par notre programme d'exécution.
+
+# Navigation threw package
+ls("package:assertive", pattern = "finite").apropos("finite")
+
+As Jim Gray said (back in 1985!):
+Make each module fail fast – either it does the right thing or it stops.
+
+Chapitre 3
+# Working with testthat
+testthat doesn’t place any restrictions on how many tests you have in a file. At one extreme, you could have one test per file; at the other, you could have all your tests in a single file. I find each extreme to cause problems with keeping track of where each test is – a middle ground where you have one test file per R file is typically easier to work with. If you do end up with many tests in a file, you can break it into sections using contexts, via the function of the same name. This feature helps you remember what your tests are for, and helps keep them in a sensible order.
+
+## Reporters
+If you don’t like the output from test file, 9 testthat provides a variety of
+output formats using reporters.
+
+Chapitre 4
+Most of your R functions should be seven lines or less. -The Cotton Corollary

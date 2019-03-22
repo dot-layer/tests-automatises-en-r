@@ -1,9 +1,0 @@
-Chapitre 1:
-
-If you waste other people’s time with scrappy code, your reputation will be shot.
-
-The tricky part is that users will almost certainly use your code in ways that you didn’t imagine, and on datasets in different formats.
-
-If you are doing large scale data analysis, or writing code for other people, then you need to do more testing.
-
-Ideally, development-time tests should be written once and run lots of times.
