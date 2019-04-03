@@ -1,3 +1,6 @@
+https://www.safaribooksonline.com/library/view/refactoring-improving-the/9780134757681/ch02.xhtml
+
+
 DEFINING REFACTORING
 Like many terms in software development, “refactoring” is often used very loosely by practitioners. I use the term more precisely, and find it useful to use it in that more precise form. (These definitions are the same as those I gave in the first edition of this book.) The term “refactoring” can be used either as a noun or a verb. The noun’s definition is:
 

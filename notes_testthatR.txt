@@ -28,3 +28,7 @@ output formats using reporters.
 
 Chapitre 4
 Most of your R functions should be seven lines or less. -The Cotton Corollary
+
+
+Other notes:
+The code is clean, and indicates the intention instead of implementation details.
