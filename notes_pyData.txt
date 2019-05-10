@@ -1,5 +1,0 @@
-Confidence that your code does what you think it does.
-
-Testability is an investment.
-
-
