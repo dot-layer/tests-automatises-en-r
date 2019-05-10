@@ -5,6 +5,9 @@ La présente archive contient le matériel destiné aux participants à l'atelie
 
 Cet atelier vise à initier l’utilisateur au concept des **tests automatisés**, aux **bonnes pratiques d’écriture de code informatique** ainsi qu’à l’importance de la **maintenabilité d’un code R**.
 
+## Contrat de licence
+
+[Creative Commons Attribution-Partage dans les mêmes conditions 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/deed.fr)
 
 ## Auteurs
 David Beauchemin <david.beauchemin.5@ulaval.ca>     
