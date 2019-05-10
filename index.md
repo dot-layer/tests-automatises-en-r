@@ -8,10 +8,10 @@ Cet atelier du colloque [R à Québec 2019](http://raquebec.ulaval.ca/2019/event
 
 ## Thèmes abordés
  - Survol des notions de base des tests automatisées
-  - Reproductibilité
-  - Simplicité
-  - Rapidité
-  - Documentation
+   - Reproductibilité
+   - Simplicité
+   - Rapidité
+   - Documentation
  - Intégration des tests avec le paquetage & visualisation des résultats
  - Amélioration du code via une structure de test
 
