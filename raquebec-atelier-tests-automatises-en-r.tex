@@ -44,7 +44,7 @@
 	stringstyle=\color{dkgreen},      % string literal style
 	escapeinside={\%*}{*)},         % if you want to add a comment within your code
 	morekeywords={*,...}            % if you want to add more keywords to the set
-} 
+}
 
   %% Renvois vers les scripts R
   %%%%% Update color if name change
@@ -93,7 +93,7 @@
 {
 	.Layer, Université Laval, CRDM, GRAAL
 }
-\date{14 mai 2019, R à Québec 2019} 
+\date{14 mai 2019, R à Québec 2019}
 
 \AtBeginSection[]
   {
@@ -102,7 +102,7 @@
      \tableofcontents[currentsection]
      \end{frame}
   }
-  
+
   \newenvironment{slide}[1]
 {\begin{frame}[environment=slide]
 \frametitle{\insertsection \newline \large{#1}}}
@@ -132,7 +132,7 @@ BoldItalicFont=Muli-BoldItalic.ttf]{Muli-Regular.ttf}%
 \begin{itemize}
 	\item Étudiants avec intérêt commun à l'actuariat, l'informatique et l'intelligence artificielle
 	\item Membres de .Layer, une communauté ayant comme mission de promouvoir la collaboration et le partage de connaissances dans le domaine de la science des données.
-	\item On organise des conférences, des ateliers et autres événements. 
+	\item Organisateurs de conférences, ateliers et autres événements.
 \end{itemize}
 \begin{center}
 	\href{dotlayer.org}{dotlayer.org}\\
@@ -153,14 +153,14 @@ BoldItalicFont=Muli-BoldItalic.ttf]{Muli-Regular.ttf}%
 \includegraphics[height=0.25\textheight]{refactoring} \hfill
 \includegraphics[height=0.25\textheight]{cleanCode} \hfill
 \includegraphics[height=0.25\textheight]{packages} \hfill
-\includegraphics[height=0.25\textheight]{testthat} 
+\includegraphics[height=0.25\textheight]{testthat}
 
 \end{frame}
 
-\begin{frame}{Le \textit{clean code}} 
+\begin{frame}{Le \textit{clean code}}
 \begin{itemize}
     \item Le test unitaire est une pratique du \textit{clean code}
-    \item Le \textit{clean code} est une pratique de génie informatique qui dicte que le code doit être propre. 
+    \item Le \textit{clean code} est une pratique de génie informatique qui dicte que le code doit être propre.
 \end{itemize}
 \begin{block}{}
 {\large ``Any fool can write code that a computer can understand. Good programmers
@@ -173,27 +173,27 @@ write code that humans can understand.''}
 \begin{frame}{Le \textit{clean code}}
 \textit{Mais quand on compile, ça n'a pas d'importance si le code est propre}
 
-Un code propre permet de collaborer facilement et éviter des bogues. 
+Un code propre permet de collaborer facilement et de réduire les bogues.
 \begin{itemize}
-    \item Quand on écrit du code, on sait (dans notre tête) ce que les variables représentent
+    \item Quand on écrit du code, on sait (dans notre tête) ce que les variables représentent.
     \item Ward Cunningham (fondateur, wiki) : on doit passer cette compréhension de la tête au code lui-même.
-    \item Pour que les autres comprennent ce que vous faires sans avoir à lire les assignations. 
+    \item Pour que les autres comprennent ce que vous faites sans avoir à lire les assignations.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Le \textit{clean code}}
-Quelques principes qui s'appliquent en \textsf{R} : 
+Quelques principes qui s'appliquent en \textsf{R} :
 \begin{itemize}
-\item Nommer une variable est une tâche très importante. 
-\item Une fonction devrait avoir une seule tâche. 
-\item Les commentaires sont dangereux. 
+\item Nommer une variable est une tâche très importante.
+\item Une fonction devrait avoir une seule tâche.
+\item Les commentaires sont dangereux.
 \begin{itemize}
-\item Si vous en avez besoin, le code n'est pas assez claire. 
-\item On oublie souvent de les mettre à jour. 
+\item Si vous en avez besoin, le code n'est pas assez claire.
+\item On oublie souvent de les mettre à jour.
 \end{itemize}
-\item Le contrôle de version est votre ami. 
+\item Le contrôle de version est votre ami.
 \end{itemize}
-Assurance qualité, R et calcul scientifique, demain @ 13:55 
+Assurance qualité, R et calcul scientifique, demain @ 13:55
 \end{frame}
 
 \begin{frame}{Les tests pour les scientifiques des données}
@@ -207,29 +207,28 @@ En \textsf{R}, les principales tâches sont :
 
 \begin{frame}{Les tests pour les scientifiques des données}
 \framesubtitle{Exploration}
-Si les tâches d'exploration
+Les tests ne sont pas nécessaires si les tâches d'exploration
 \begin{itemize}
-\item sont quelques lignes;
+\item comptent quelques lignes seulement;
 \item sont simples;
-\item font seulement appel à des fonctions pré-définies;
+\item font seulement appel à des fonctions pré-définies.
 \end{itemize}
-les tests ne sont pas nécessaires.
 \end{frame}
 
 \begin{frame}{Les tests pour les scientifiques des données}
 \framesubtitle{Programmation}
-On désire des tests dans les tâches de programmation pour 
+On désire des tests dans les tâches de programmation pour
 \begin{itemize}
 \item s'assurer que notre fonction a le comportement voulu
 \item s'assurer qu'on ne brise pas quelque chose qui fonctionnait dans le passé
 %\item avoir une documentation qui défini les comportements -DB
 \end{itemize}
-Les tests pendant la programmation servent à vérifier que le programmeur n'a pas fait d'erreur. 
+Les tests pendant la programmation servent à vérifier que le programmeur n'a pas fait d'erreur.
 \end{frame}
 
 \begin{frame}{Les tests pour les scientifiques des données}
 \framesubtitle{Partage}
-On désire des tests dans les tâches de partage pour 
+On désire des tests dans les tâches de partage pour
 \begin{itemize}
 \item s'assurer que les utilisateurs respectent les conditions d'utilisation de votre fonction.
 \item important quand on publie des paquetages.
@@ -239,7 +238,7 @@ Les tests pendant le partage servent à vérifier que l'utilisateur n'ai pas fai
 
 \begin{frame}{Deux principales philosophies de tests}
 
-Le \textsf{R} compte deux grandes philosophies de tests. 
+Le \textsf{R} compte deux grandes philosophies de tests.
 
 \begin{itemize}
 \item Les tests pour s'aider
@@ -259,8 +258,8 @@ testing is to make sure that the user hasn’t done something stupid.''}
 \framesubtitle{Les tests pour s'aider}
 Les tests lors du développement
 \begin{itemize}
-\item Ce sont les tests unitaires. 
-\item On test le résultat d'une fonction.
+\item Ce sont les tests unitaires.
+\item On teste le résultat d'une fonction.
 \item On exécute le test pour s'assurer qu'on a pas introduit de bogues.
 \item Rendu très simple avec testthat
 \item C'est l'objectif de l'atelier.
@@ -273,7 +272,7 @@ Les tests lors du partage
 \begin{itemize}
 \item Quand on écrit une fonction, on a une utilité en tête
 \item D'autres personnes vont peut-être vouloir l'utiliser pour une tâche différente : les gens sont créatifs !
-\item Paquetage assertive. 
+\item Paquetage assertive.
 \end{itemize}
 \end{frame}
 
@@ -281,13 +280,13 @@ Les tests lors du partage
 À quel moment est-ce que le test devrait être écrit ?
 \begin{enumerate}
 \item Après avoir écrit un script
-\item Avant avoir écrit la fonction
+\item Avant d'avoir écrit la fonction
 \end{enumerate}
 \end{frame}
 
 \begin{frame}{Quand est-ce que je dois écrire mon test ?}
 \framesubtitle{Situation 1}
-On considère la situation suivante : 
+On considère la situation suivante :
 \begin{enumerate}
 \item On définit une tâche
 \item On se donne des paramètres jouets
@@ -309,7 +308,7 @@ On perd une information importante : une condition que la fonction doit respecte
 
 \begin{frame}{Quand est-ce que je dois écrire mon test ?}
 \framesubtitle{Situation 2}
-On considère la situation suivante : 
+On considère la situation suivante :
 \begin{enumerate}
 \item On regarde un script qu'on a fait il y a longtemps
 \item On veut utiliser le code dans une autre tâche
@@ -318,7 +317,7 @@ On considère la situation suivante :
 
 \begin{frame}{Quand est-ce que je dois écrire mon test ?}
 \framesubtitle{Situation 2}
-Alors, on 
+Alors, on
 \begin{enumerate}
 \item On se définit des conditions que la fonction doit respecter (tests)
 \item On écrit la fonction de telle sorte que les tests passent
@@ -328,18 +327,18 @@ On s'assure de ne rien briser !
 
 \begin{frame}{Quand est-ce que je dois écrire mon test ?}
 \framesubtitle{Situation 3}
-On considère la situation suivante : 
+On considère la situation suivante :
 \begin{enumerate}
 \item On regarde une fonction
 \item Elle contient plusieurs comportements, cas et conditions
 \item On désire ajouter un comportement
 \end{enumerate}
-La fonction est possiblement utilisée à d'autres endroits, il ne faut pas changer ce qu'elle fait, seulement comment elle le fait. 
+La fonction est possiblement utilisée à d'autres endroits, il ne faut pas changer ce qu'elle fait, seulement comment elle le fait.
 \end{frame}
 
 \begin{frame}{Quand est-ce que je dois écrire mon test ?}
 \framesubtitle{Situation 3}
-Alors, on 
+Alors, on
 \begin{enumerate}
 \item Écrit des tests pour valider le comportement du code total
 \item On extrait des fonctions individuelles pour chaque comportement, cas et conditions
@@ -354,8 +353,8 @@ Situation 3 : quand on a mal programmé
 Fail fast, fail often
 \end{block}
 \begin{itemize}
-\item Plus souvent on test, plus il est façile de diagnostiquer le problème
-\item C'est facile faire des erreures. 
+\item Plus on teste souvent, plus il est facile de diagnostiquer le problème
+\item C'est facile faire des erreurs.
 \end{itemize}
 \end{frame}
 
@@ -363,22 +362,22 @@ Fail fast, fail often
 
 \begin{frame}{Un premier test unitaire}
 \framesubtitle{Le compromis complexité-rapidité}
-Faire des exemples de tests dans un atelier est difficile. 
+Faire des exemples de tests dans un atelier est difficile.
 \begin{itemize}
-\item Si les programmes valent la peine de faire des tests, ils sont trop longs à expliquer. 
+\item Si les programmes valent la peine de faire des tests, ils sont trop longs à expliquer.
 \item Si les programmes sont trop simples, ça ne vaut pas la peine de faire tests.
 \end{itemize}
 
-Tester son code est simple. La difficulté est développer l'habitude. 
+Tester son code est simple. La difficulté est développer l'habitude.
 \end{frame}
 
 \begin{frame}{Un premier test unitaire}
-Avant d'utiliser \textit{testthat}, on écrit notre propre test à la main. 
+Avant d'utiliser \textit{testthat}, on écrit notre propre test à la main.
 
 \begin{block}{La moyenne géométrique}
 \gotoR{partie\_0/exemple\_1.R}
 \begin{equation*}
-\left(\prod_{i = 1}^{n}x_i\right)^{\frac{1}{n}}  = 
+\left(\prod_{i = 1}^{n}x_i\right)^{\frac{1}{n}}  =
 (-1)^m \exp\left(\frac{1}{n}\sum_{i = 1}^{n}\ln |x_i|\right)
 \end{equation*}
 
@@ -392,11 +391,11 @@ Avant d'utiliser \textit{testthat}, on écrit notre propre test à la main.
 \begin{frame}{L'interface générale d'un test}
 Un test \textit{testthat} se divise en deux parties:
 \begin{itemize}
-	\item Le nom du comportement tester %(\textit{desc})
+	\item Le nom du comportement testé %(\textit{desc})
 	\item Le code du test qui se sous-divise en deux parties: %(\textit{code}):
 	\begin{itemize}
-		\item  La valeur retournée par le comportement tester (\textit{optionnel selon la situation})
-		\item L'évaluation du comportement tester
+		\item  La valeur retournée par le comportement testé (\textit{optionnel selon la situation})
+		\item L'évaluation du comportement testé
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -413,13 +412,13 @@ retourne la valeur transformée.
 \begin{block}{Scénario: Calculer une valeur logarithmique}
 \begin{lstlisting}
 UNE_VALEUR_POSITIVE <- 1
-VALEUR_ATTENDU <- 0
+VALEUR_ATTENDUE <- 0
 
-test_that("Une valeur positive, 
-            transformation ln, 
+test_that("Une valeur positive,
+            transformation ln,
             valeur ln adéquate.",{
         actual <- log(UNE_VALEUR_POSITIVE)
-        expect_equal(expected = VALEUR_ATTENDU, actual)
+        expect_equal(expected = VALEUR_ATTENDUE, actual)
 })
 \end{lstlisting}
 \end{block}
@@ -442,7 +441,7 @@ Rappel : un test avec \textit{testthat} est composé
 \begin{enumerate}
 \item d'un appel à une fonction;
 \item d'un résultat désiré;
-\item d'une comparaison entre l'appel et le résultat. 
+\item d'une comparaison entre l'appel et le résultat.
 \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -460,29 +459,29 @@ Rappel : un test avec \textit{testthat} est composé
 \begin{itemize}
 \item Placer tous les fichiers test dans un répertoire
 \item Un fichier de tests contient plusieurs tests
-\item Les tests sont organisés par hiérarchie : 
+\item Les tests sont organisés par hiérarchie :
 \begin{itemize}
     \item résultats attendus sont regroupés dans les tests
     \item les tests sont regroupés dans des fichiers
-    \item les fichiers sont regroupés dans des répertoires. 
+    \item les fichiers sont regroupés dans des répertoires.
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Les tests automatisés en R}
 \begin{itemize}
-\item Un résultat attendu décrit le résultat d'une computation. Il vérifie que le comportement est approprié. 
-\item Un test regroupe plusieurs résultats attendus pour une seule fonction / une seule fonctionnalité. Parfois appelé test unitaire. 
-\item Un fichier regroupe plusieurs tests similaires ou reliés. 
+\item Un résultat attendu décrit le résultat d'une computation. Il vérifie que le comportement est approprié.
+\item Un test regroupe plusieurs résultats attendus pour une seule fonction / une seule fonctionnalité. Parfois appelé test unitaire.
+\item Un fichier regroupe plusieurs tests similaires ou reliés.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Les résultats attendus}
 \begin{itemize}
-\item Un résultat attendu est le plus petit niveau de test. 
+\item Un résultat attendu est le plus petit niveau de test.
 \item Il commence par expect\_
 \item Il contient deux arguments : le résultat actuel, et le résultat attendu
-\item Les deux arguments doivent correspondre. 
+\item Les deux arguments doivent correspondre.
 \end{itemize}
 \end{frame}
 
@@ -536,7 +535,7 @@ Rappel : un test avec \textit{testthat} est composé
 \item \texttt{test\_file("test-file.R", reporter = "summary")}
 \item \texttt{"minimal"} : une ligne
 \item \texttt{"stop"} : arrêt à l'échec
-\item \texttt{"silent"} : aucun, mais retourne une 
+\item \texttt{"silent"} : aucun, mais retourne une
 \item \texttt{"rstudio"} : Entre summary et minimal : une ligne par échec
 \item \texttt{"tap"} : "Test Anything Protocol"
 \item \texttt{"check"} : Pour les paquetages
@@ -549,7 +548,7 @@ Rappel : un test avec \textit{testthat} est composé
 \item On peut avoir un fichier par test
 \item On peut avoir un fichier avec tous les tests
 \item On cherche un compromis
-\item On peut diviser un fichier en contextes. 
+\item On peut diviser un fichier en contextes.
 \end{itemize}
 \end{frame}
 
@@ -561,7 +560,7 @@ Quand vous êtes tenté d'écrire quelque chose sous un \textit{print}, écrire 
 \item Comportements attendus
 \item Exemples négatifs
 \item Erreurs attendus
-\item 
+\item
 \end{itemize}
 \end{frame}
 
@@ -599,7 +598,7 @@ Il s'agit de notre état avant le début du comportement du scénario que l'on t
 Il s'agit du comportement à tester de notre scénario que l'on teste.
 
 \begin{block}{Scénario: Calculer une valeur logarithmique}
-\textit{\textbf{When}} Application de la transformation logarithmique naturelle. 
+\textit{\textbf{When}} Application de la transformation logarithmique naturelle.
 \end{block}
 \end{frame}
 
