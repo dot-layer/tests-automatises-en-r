@@ -1,8 +1,21 @@
-# R
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+missfont.log
 
-# 
-
+*.log
+*.aux
+*.out
+*.toc
+*.gz
+*.bbl
+*.blg
+*.lot
+*.lof
+*.bcf
+*.run.xml
+*.lol
+*.nav
+*.snm
+*.vrb
