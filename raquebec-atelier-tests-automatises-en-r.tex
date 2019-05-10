@@ -51,7 +51,7 @@
 \newcommand{\gotoR}[1]{%
 	\begin{center}
 		\colorbox{ulgold}{\color{black}
-			\makebox[50mm][c]{%
+			\makebox[70mm][c]{%
 				\makebox[5mm]{\raisebox{-1pt}{\large\faChevronCircleDown}}\;%
 				{\ttfamily #1}}}
 \end{center}}
@@ -126,7 +126,7 @@ BoldItalicFont=Muli-BoldItalic.ttf]{Muli-Regular.ttf}%
 \titlepage
 \end{frame}
 
-\section{Introduction}
+\section[Introduction]{Introduction}
 
 \begin{frame}{Qui nous sommes}
 \begin{itemize}
@@ -164,7 +164,7 @@ BoldItalicFont=Muli-BoldItalic.ttf]{Muli-Regular.ttf}%
 \end{itemize}
 \begin{block}{}
 {\large ``Any fool can write code that a computer can understand. Good programmers
-write code that humans can understand.''}
+write code that \textbf{humans} can understand.''}
 \vskip5mm
 \hspace*\fill{\small--- Martin Fowler}
 \end{block}
@@ -359,7 +359,7 @@ Fail fast, fail often
 \end{itemize}
 \end{frame}
 
-\section{Un premier test unitaire}
+\section[Un premier test unitaire]{Un premier test unitaire}
 
 \begin{frame}{Un premier test unitaire}
 \framesubtitle{Le compromis complexité-rapidité}
@@ -376,20 +376,20 @@ Tester son code est simple. La difficulté est développer l'habitude.
 Avant d'utiliser \textit{testthat}, on écrit notre propre test à la main. 
 
 \begin{block}{La moyenne géométrique}
-\gotoR{partie\_0/exemple\_1.R}
+\gotoR{exercices/partie\_1/exercices\_1.R}
 \begin{equation*}
 \left(\prod_{i = 1}^{n}x_i\right)^{\frac{1}{n}}  = 
 (-1)^m \exp\left(\frac{1}{n}\sum_{i = 1}^{n}\ln |x_i|\right)
 \end{equation*}
-
+\centering Où m est le nombre de valeurs négatives.
 \end{block}
 \end{frame}
 
 
-\section{Le paquetage \emph{testthat}}
+\section[Le paquetage \emph{testthat}]{Le paquetage \emph{testthat}}
 
-\subsection{Introduction à l'interface de testthat}
-\begin{frame}{L'interface générale d'un test}
+\subsection[Introduction à l'interface de \emph{testthat}]{Introduction à l'interface de testthat}
+\begin{frame}{L'interface générale d'un test \emph{testthat}}
 Un test \textit{testthat} se divise en deux parties:
 \begin{itemize}
 	\item Le nom du comportement tester %(\textit{desc})
@@ -427,11 +427,11 @@ test_that("Une valeur positive,
 
 \begin{frame}{Exercices \textit{testthat}}
 \begin{block}{Scénario: Moyenne géométrique}
-\gotoR{partie\_1/exemple\_2.R}
+\gotoR{exercices/partie\_1/exercices\_2.R}
 \end{block}
 \end{frame}
 
-\subsection{testthat en détails}
+\subsection[\emph{testthat} en détails]{\emph{testthat} en détails}
 
 \begin{frame}{Le workflow \textit{testthat}}
 Rappel : un test avec \textit{testthat} est composé
@@ -572,7 +572,7 @@ Quand vous êtes tenté d'écrire quelque chose sous un \textit{print}, écrire 
 \end{itemize}
 \end{frame}
 
-\section{Écrire du code testable : conseils et développement conduit par tests}
+\section[Écrire du code testable : conseils et développement conduit par tests]{Écrire du code testable : conseils et développement conduit par tests}
 
 \begin{frame}{Bien écrire nos tests}
 Un test se divise en trois parties:

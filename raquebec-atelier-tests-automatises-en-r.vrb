@@ -1,0 +1,8 @@
+\frametitle{\textit {Tell don't ask} en R}
+\begin{block}{Dire quoi faire aux données}
+\begin{lstlisting}
+mean(data[data > median(data)])
+
+moyenne_valeurs_supp_medianne(data)
+\end{lstlisting}
+\end{block}
