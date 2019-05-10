@@ -1,0 +1,750 @@
+% !TeX program = lualatex
+\documentclass[11pt]{beamer}
+\usefonttheme[onlymath]{serif}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{bbm}
+\usepackage{lmodern}
+% \usepackage[hidelinks]{hyperref}
+\usepackage[autolanguage]{numprint}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{listings}
+
+
+\usepackage{fontawesome} %font fa logo
+
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+	language=R,                     % the language of the code
+	basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+	% will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	tabsize=4,                      % sets default tabsize to 2 spaces
+	captionpos=b,                   % sets the caption-position to bottom
+	%breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 % show the filename of files included with \lstinputlisting;
+	% also try caption instead of title
+	keywordstyle=\color{blue},      % keyword style
+	commentstyle=\color{mauve},   % comment style
+	stringstyle=\color{dkgreen},      % string literal style
+	escapeinside={\%*}{*)},         % if you want to add a comment within your code
+	morekeywords={*,...}            % if you want to add more keywords to the set
+} 
+
+  %% Renvois vers les scripts R
+  %%%%% Update color if name change
+\newcommand{\gotoR}[1]{%
+	\begin{center}
+		\colorbox{ulgold}{\color{black}
+			\makebox[40mm][c]{%
+				\makebox[5mm]{\raisebox{-1pt}{\large\faChevronCircleDown}}\;%
+				{\ttfamily #1}}}
+\end{center}}
+
+
+\hypersetup{
+  colorlinks=true,
+  citecolor=blue,
+  linkcolor=black,
+  filecolor=magenta,
+  urlcolor=cyan,
+}
+
+\mode<presentation> {
+  % \useoutertheme{infolines} % Pour les thèmes qui n'ont pas de pied-de-page
+  \usetheme{ulaval}
+  %\usecolortheme{ulaval}
+  % \setbeamercovered{transparent}
+  \setbeamercovered{invisible}
+}
+
+
+\logo{%\includegraphics[height=0.6cm]{COPL}\hspace{.5cm}%
+\includegraphics[height=1.5cm]{DotLayer_logo_short_COL_RVB}}%\hspace{.2cm}\vspace{.865\paperheight}}
+\titlegraphic{
+	\includegraphics[height=1cm]{DotLayer_logo_full+tagline_COL_RVB}\vspace{0.7cm}
+	\includegraphics[height=1cm]{logo-universite-laval}\vspace{0.7cm}
+	\includegraphics[height=1cm]{crdm}\vspace{0.7cm}
+	\includegraphics[height=1cm]{graal}\vspace{0.7cm}
+}
+
+\title[Les tests automatisés en R]{Les tests automatisés en R}
+%\subtitle[]{}
+
+\subtitle{Comment maintenir son code}
+
+\author[D. Beauchemin \& C. Blier-Wong]{David Beauchemin, BSc. et \\ Christopher Blier-Wong, MSc.}
+\institute[.Layer]
+{
+	.Layer, Université Laval, CRDM, GRAAL
+}
+\date{14 mai 2019, R à Québec 2019} 
+
+\AtBeginSection[]
+  {
+     \begin{frame}<beamer>
+     \frametitle{Agenda}
+     \tableofcontents[currentsection]
+     \end{frame}
+  }
+  
+  \newenvironment{slide}[1]
+{\begin{frame}[environment=slide]
+\frametitle{\insertsection \newline \large{#1}}}
+{\end{frame}}
+
+\usepackage{fontspec}
+
+\setsansfont{Muli-Regular.ttf}%
+[BoldFont=Muli-Bold.ttf,
+ItalicFont=Muli-Italic.ttf,
+BoldItalicFont=Muli-BoldItalic.ttf]
+
+
+
+
+
+
+\begin{document}
+
+\begin{frame}[label=titre, plain]
+\titlepage
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}{Qui nous sommes}
+\begin{itemize}
+	\item Étudiants avec intérêt commun à l'actuariat, l'informatique et l'intelligence artificielle
+	\item Membres de .Layer, est une communauté ayant comme mission de promouvoir la collaboration et le partage de connaissances dans le domaine de la science des données.
+	\item On organise des conférences, des ateliers et autres événements. 
+\end{itemize}
+\begin{center}
+	\href{dotlayer.org}{dotlayer.org}\\
+	\includegraphics[height = 0.3cm]{facebook} : \href{https://www.facebook.com/MeetupMLQuebec/}{MeetupMLQuebec}
+\end{center}
+\end{frame}
+
+\begin{frame}{Quelques considérations}
+\begin{itemize}
+\item Quand on dit "les autres" dans cette présentation, ça veut aussi dire vous dans le futur !
+\item On suit le style de code \href{https://google.github.io/styleguide/Rguide.xml\#functionlanguage}{Google's R Style Guide}. Le livre \href{http://adv-r.had.co.nz/Style.html}{Advanced R} en offre aussi un. 
+\item Il y a différentes philosophies de test pour chaque paradigme de programmation. Dans cet atelier, on considère le \textsf{R} comme un langage procédural contrairement à fonctionnel
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Quelques considérations} %%%%% Références et matériels ? -DB
+%% Images plus grosses ? -DB
+%% Images vers lien vers l'achat du livre ?? -DB
+
+\includegraphics[height=0.25\textheight]{testingRcode} \hfill
+\includegraphics[height=0.25\textheight]{refactoring} \hfill
+\includegraphics[height=0.25\textheight]{cleanCode} \hfill
+\includegraphics[height=0.25\textheight]{packages} \hfill
+\includegraphics[height=0.25\textheight]{testthat} 
+
+\end{frame}
+
+\begin{frame}{Le \textit{clean code}} % Pas clair si on fait référence au livre ou au concept de clean code selon moi -DB
+\begin{itemize}%% Les tests automatisées sont une pratique courant parmis les professionnels du code -DB
+\item Le test unitaire est une pratique du \textit{clean code}
+\item Le \textit{clean code} est une pratique de génie informatique qui dicte que le code doit être propre. % Pas si simple que ca.. Le clean code est une méthodologie de travail selon moi. -DB
+\end{itemize}
+\begin{block}{} %% emphase sur humans -DB
+{\large ``Any fool can write code that a computer can understand. Good programmers
+write code that humans can understand.''}
+\vskip5mm
+\hspace*\fill{\small--- Martin Fowler}
+\end{block}
+\end{frame}
+
+\begin{frame}{Le \textit{clean code}}
+\textit{Mais quand on compile, ça n'a pas d'importance si le code est propre}
+
+Un code propre permet de collaborer facilement et éviter des bogues. 
+\begin{itemize}
+\item Quand on écrit du code, on sait (dans notre tête) ce que les variables représentent
+\item Ward Cunningham (fondateur, wiki) : on doit passer cette compréhension de la tête au code lui-même. %% de notre tête vers le code lui-même et mettre en emphase pt ? -DB
+\item Pour que les autres comprennent ce que vous faires sans avoir à lire les assignations. 
+%\item Pour faciliter le transfert des connaissances au sein de l'équipe ? -DB
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Le \textit{clean code}}
+Quelques principes qui s'appliquent en \textsf{R} : 
+\begin{itemize}
+\item Nommer une variable est une tâche très importante. 
+\item Une fonction devrait avoir une seule tâche. 
+\item Les commentaires sont dangereux. 
+\begin{itemize}
+\item Si vous en avez besoin, le code n'est pas assez claire. % c'Est que votre code n'est pas assez claire -DB
+\item On oublie souvent de les mettre à jour. 
+\end{itemize}
+\item Le contrôle de version est votre ami. 
+\end{itemize}
+Assurance qualité, R et calcul scientifique, demain @ 13:55 
+\end{frame}
+
+\begin{frame}{Les tests pour les scientifiques des données}
+En \textsf{R}, les principales tâches sont :
+\begin{itemize}
+\item D'interagir avec des données afin de découvrir des statistiques ou de l'information intéressante (exploration)
+\item D'automatiser ces tâches d'exploration sur plusieurs jeux de données ou sur plusieurs tâches (programmation)
+\item De rassembler une collection de fonctions et publier un paquetage pour partager aux autres (partage)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les tests pour les scientifiques des données}
+\framesubtitle{Exploration}
+Si les tâches d'exploration
+\begin{itemize}
+\item sont quelques lignes;
+\item sont simples;
+\item font seulement appel à des fonctions pré-définies;
+\end{itemize}
+les tests ne sont pas nécessaires.
+\end{frame}
+%% Je trouve cette slides dangereuses ont donne un passe droit sans vraiment dire c'Est quoi être simples, quelques lignes.-DB
+
+\begin{frame}{Les tests pour les scientifiques des données}
+\framesubtitle{Programmation}
+On désire des tests dans les tâches de programmation pour 
+\begin{itemize}
+\item s'assurer que notre fonction a le comportement voulu
+\item s'assurer qu'on ne brise pas quelque chose qui fonctionnait dans le passé
+%\item avoir une documentation qui défini les comportements -DB
+\end{itemize}
+Les tests pendant la programmation servent à vérifier que le programmeur n'a pas fait d'erreur. 
+\end{frame}
+
+\begin{frame}{Les tests pour les scientifiques des données}
+\framesubtitle{Partage}
+On désire des tests dans les tâches de partage pour 
+\begin{itemize}
+\item s'assurer que les utilisateurs respectent les conditions d'utilisation de votre fonction.
+\item important quand on publie des paquetages.
+\end{itemize}
+Les tests pendant le partage servent à vérifier que l'utilisateur n'ai pas fait d'erreur
+\end{frame}
+
+\begin{frame}{Deux principales philosophies de tests}
+
+Le \textsf{R} compte deux grandes philosophies de tests. 
+
+\begin{itemize}
+\item Les tests pour s'aider
+\item Les tests pour aider les autres
+\begin{block}{}
+{\large ``The point of development-time testing is to make sure that you
+haven’t done something stupid. By contrast, the point of run-time
+testing is to make sure that the user hasn’t done something stupid.''}
+\vskip5mm
+\hspace*\fill{\small--- Richard Cotton}
+\end{block}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Deux principales philosophies de tests}
+\framesubtitle{Les tests pour s'aider}
+Les tests lors du développement
+\begin{itemize}
+\item Ce sont les tests unitaires. % je préfère utiliser tests automatisés.Sinon il faut embarquer dans ces quoi un test unitaire.. en GLO il y a deux cours de 3h en 3-4e année jsute sur ce sujet.
+\item On test le résultat d'une fonction. %Comportement -DB
+\item On exécute le test pour s'assurer qu'on a pas introduit de bogues. %et qu'on obtient le comportement voulu -DB
+% je mettrais cela plutôt en dehors du itemize-DB
+\item Rendu très simple avec testthat
+\item C'est l'objectif de l'atelier.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Deux principales philosophies de tests}
+\framesubtitle{Les tests pour aider les autres}
+Les tests lors du partage
+\begin{itemize}
+\item Quand on écrit une fonction, on a une utilité en tête
+\item D'autres personnes vont peut-être vouloir l'utiliser pour une tâche différente : les gens sont créatifs !
+\item Paquetage assertive. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Quand est-ce que je dois écrire mon test ?}
+À quel moment est-ce que le test devrait être écrit ?
+\begin{enumerate}
+\item Après avoir écrit un script
+\item Avant avoir écrit la fonction (partie 3)
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Quand est-ce que je dois écrire mon test ?}
+\framesubtitle{Situation 1}
+On considère la situation suivante : 
+\begin{enumerate}
+\item On définit une tâche
+\item On se donne des paramètres jouets
+\item On constuit un script pour donner la réponse voulue
+\item On extrait une fonction du script
+\item On efface le script
+\end{enumerate}
+On perd une information importante : une condition que la fonction doit respecter !
+\end{frame}
+
+\begin{frame}{Quand est-ce que je dois écrire mon test ?}
+\framesubtitle{Situation 1}
+À la place, on
+\begin{enumerate}
+\item Conserve le résultat attendu dans un test
+\item C'est le cas le plus facile, on a déjà tous les ingrédients !
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Quand est-ce que je dois écrire mon test ?}
+\framesubtitle{Situation 2}
+On considère la situation suivante : 
+\begin{enumerate}
+\item On regarde un script qu'on a fait il y a longtemps
+\item On veut utiliser le code dans une autre tâche
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Quand est-ce que je dois écrire mon test ?}
+\framesubtitle{Situation 2}
+Alors, on 
+\begin{enumerate}
+\item On se définit des conditions que la fonction doit respecter (tests)
+\item On écrit la fonction de telle sorte que les tests passent
+\end{enumerate}
+On s'assure de ne rien briser !
+\end{frame}
+
+\begin{frame}{Quand est-ce que je dois écrire mon test ?}
+\framesubtitle{Situation 3}
+On considère la situation suivante : 
+\begin{enumerate}
+\item On regarde une fonction
+\item Elle contient plusieurs comportements, cas et conditions
+\item On désire ajouter un comportement
+\end{enumerate}
+La fonction est possiblement utilisée à d'autres endroits, il ne faut pas changer ce qu'elle fait, seulement comment elle le fait. 
+\end{frame}
+
+\begin{frame}{Quand est-ce que je dois écrire mon test ?}
+\framesubtitle{Situation 3}
+Alors, on 
+\begin{enumerate}
+\item Écrit des tests pour valider le comportement du code total
+\item On extrait des fonctions individuelles pour chaque comportement, cas et conditions
+\item On exécute les tests à chaque changement
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Quand est-ce que je dois écrire mon test ?}
+\framesubtitle{Après avoir écrit un script}
+Situation 3 : quand on a mal programmé
+\begin{block}{}
+Fail fast, fail often
+\end{block}
+\begin{itemize}
+\item Plus souvent on test, plus il est façile de diagnostiquer le problème
+\item 
+\end{itemize}
+\end{frame}
+
+\section{Un premier test unitaire} %un premier test automatisée -DB
+
+\begin{frame}{Un premier test unitaire} %Same -DB
+\framesubtitle{Le compromis complexité-rapidité}
+%% _Testability is an investment._ pyData video -DB
+Faire des exemples de tests dans un atelier est difficile. 
+\begin{itemize}
+\item Si les programmes vallent la peine de faire des tests, ils sont trop long à expliquer. 
+\item Si les programmes sont trop simples, ça ne vaut pas la peine de faire tests.
+\end{itemize}
+
+Tester son code est simple. La difficulté est développer l'habitude. 
+\end{frame}
+
+\begin{frame}{Un premier test unitaire}
+Avant d'utiliser Testthat, on écrit notre propre test à la main. 
+
+\begin{block}{La moyenne géométrique}
+\gotoR{partie\_0/exemple\_1.R}
+\begin{equation*}
+\left(\prod_{i = 1}^{n}x_i\right)^{\frac{1}{n}}
+\end{equation*}
+
+\end{block}
+\end{frame}
+
+
+\section{Le paquetage TestThat}
+
+\subsection{Introduction à l'interface de testthat}
+\begin{frame}{L'interface générale d'un test}
+Un test \textit{TestThat} se divise en deux parties:
+\begin{itemize}
+	\item Le nom du comportement tester %(\textit{desc})
+	\item Le code du test qui se sous-divise en deux parties: %(\textit{code}):
+	\begin{itemize}
+		\item  La valeur retournée par le comportement tester (\textit{optionnel selon la situation})
+		\item L'évaluation du comportement tester
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemple \textit{TestThat}}
+\begin{block}{Scénario: Calculer une valeur logarithmique}
+Une valeur positive, \\
+application de la transformation logarithmique naturel, \\
+retourne la valeur transformer.
+\end{block}
+
+% exemple tata du genre 2 + 2 reutnr 4
+% code block plutôt que switcher vers un script
+\end{frame}
+
+\begin{frame}[fragile]{Exemple \textit{TestThat}}
+\begin{block}{Scénario: Calculer une valeur logarithmique}
+\begin{lstlisting}
+UNE_VALEUR_POSITIVE <- 1
+VALEUR_ATTENDU <- 0
+
+test_that("Une valeur positive, 
+transformation ln, 
+valeur logarithmique naturel",
+{actual <- log(UNE_VALEUR_POSITIVE)
+expect_equal(expected = VALEUR_ATTENDU, actual)
+})
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}{Exercices \textit{TestThat}}
+\begin{block}{Scénario: Moyenne .....}
+% reprend exercice sur la moyenne géométrique mais en testthat
+\gotoR{introduction.R}
+\end{block}
+\end{frame}
+
+\begin{frame}{Pause}
+10 minutes
+\end{frame}
+
+\subsection{testthat en détails}
+
+\begin{frame}{Le workflow Testthat}
+Rappel : un test avec Testthat est composé
+
+\begin{enumerate}
+	\item d'un entête en caractères pour décrire le test
+	\item du test, qui est composé
+	\begin{enumerate}
+		\item d'un appel à une fonction
+		\item d'un résultat désiré
+		\item d'une comparaison entre l'appel et le résultat. 
+	\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Les tests automatisés en R}
+\begin{itemize}
+\item Exécuter les tests doit être facile et rapide
+\item On doit pouvour exécuter tous les tests quand on applique un changement
+\item testthat facilite cette tâche mais on doit suivre un schéma particulier
+\end{itemize}
+\end{frame}
+
+\begin{frame}{La structure de tests}
+\framesubtitle{La structure de fichiers}
+\begin{itemize}
+\item Créer un répertoire tests/
+\item Créer un répertoire tests/testthat
+\item Créer un fichier tests/testthat.R
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les tests automatisés en R}
+\begin{itemize}
+\item Un fichier de tests est placé dans tests/ et débute par test
+\item Les tests sont organisés par hierarchie : les résultats attendus sont regroupés dans les tests, qui sont regroupés dans des fichiers. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les tests automatisés en R}
+\begin{itemize}
+\item Un résultat attendu décrit le résultat d'une computation. Il vérifie que le comportement est approprié 
+\item Un test regroupe plusieurs résultats attendus pour une seule fonction / une seule fonctionnalité. Parfois appelé test unitaire. 
+\item Un fichier regroupe plusieurs tests similaires ou reliés. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les résultats attendus}
+\begin{itemize}
+\item Un résultat attendu est le plus petit niveau de test. 
+\item Il commence par expect\_
+\item Il contient deux arguments : le résultat actuel, et le résultat attendu
+\item Les deux arguments doivent correspondre. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les résultats attendus}
+\framesubtitle{Les expect\_}
+\begin{itemize}
+\item expect\_equal
+\item expect\_identical
+\item expect\_match
+\item expect\_output
+\item expect\_error
+\item expect\_warning
+\item expect\_is
+\item expect\_true et expect\_false
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Les résultats attendus}
+\framesubtitle{Les expect\_}
+{\ttfamily ls("package:testthat", pattern = "\^{}expect")}
+\end{frame}
+
+
+
+\begin{frame}{Les résultats attendus}
+\framesubtitle{Qu'est-ce qui est égal ?}
+\begin{itemize}
+\item 1e-50 = 0 ?
+\item Vrai / Attendu < $\varepsilon$ ?
+\item |Vrai - Attendu| < $\varepsilon$ ?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les tests}
+\begin{itemize}
+\item Chaque test devrait avoir un nom informatif qui explique ce qui se passe
+\item Quand le test échoue, c'est un des messages qu'on affiche
+\item Le message doit permettre d'identifier l'erreur rapidement
+\item Pensez : Tester que donné ..., quand ..., alors ...
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les tests}
+\begin{itemize}
+\item On définit un nouveau test avec test\_that
+\item Un test devrait tester un comportement
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Organisation des tests}
+\framesubtitle{Les contextes}
+\begin{itemize}
+\item On peut avoir un fichier par test
+\item On peut avoir un fichier avec tous les tests
+\item On cherche un compromis
+\item On peut diviser un fichier en contextes. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Organisation des tests}
+\framesubtitle{Les contextes}
+Exemple de contexte
+\end{frame}
+
+\begin{frame}{Exécuter les tests}
+\begin{itemize}
+\item {\texttt{test\ file}} exécute tous les tests dans un fichier
+\item {\texttt{test\_dir}} exécute tous les fichiers dans un répertoire
+\item \texttt{test\ check} si vous développez des paquetages
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exécuter les tests}
+Exemple de output
+\end{frame}
+
+\begin{frame}{Exécuter les tests}
+\framesubtitle{Changer les rapports}
+\begin{itemize}
+\item \texttt{test\_file("test-file.R", reporter = "summary")}
+\item \texttt{"minimal"} : une ligne
+\item \texttt{"stop"} : arrêt à l'échec
+\item \texttt{"silent"} : aucun, mais retourne une 
+\item \texttt{"rstudio"} : Entre summary et minimal : une ligne par échec
+\item \texttt{"tap"} : "Test Anything Protocol"
+\item \texttt{"check"} : Pour les paquetages
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Quoi tester}
+\begin{block}{}
+Quand vous êtes temptés d'écrire quelquechose sous un print, écrire un test à la place. -- Martin Fowler
+\end{block}
+\begin{itemize}
+\item Comportements attendus.
+\item Exemples négatifs. 
+\item Fail fast, fail often : c'est façile faire des erreurs. Les tests sont des garanties et des 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Plus d'information sur les tests}
+\begin{itemize}
+\item Quelle valeur a fait échouer la fonction ?
+\item Quel itération de la boucle a échoué ?
+\end{itemize}
+{\ttfamily 
+
+test\_that(\\
+\quad"temp, with a NULL input, returns NULL",\\
+\quad$\{$\\
+\qquad	actual <- temp(3, NULL)\\
+\qquad	info <- paste("temp(3, NULL) =", deparse(actual))\\
+\qquad	expect\_null(actual, info = info)\\
+\quad$\}$\\
+)
+}
+\end{frame}
+
+\begin{frame}{Pause}
+Pause de 30 minutes
+\end{frame}
+
+\begin{frame}{Le workflow Testthat}
+Rappel : un test avec Testthat est composé
+
+\begin{enumerate}
+\item d'un entête en caractères pour décrire le test
+\item du test, qui est composé
+\begin{enumerate}
+\item d'un appel à une fonction
+\item d'un résultat désiré
+\item d'une comparaison entre l'appel et le résultat. 
+\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Le workflow Testthat}
+
+La hiérarchie de tests
+
+\begin{enumerate}
+\item Résultats attendus dans les tests
+\item Tests dans les contextes
+\item Contextes dans un fichier
+\item Fichiers de tests
+\item Répertoires de fichiers
+\end{enumerate}
+
+\end{frame}
+
+\section{Écrire du code testable : conseils et développement conduit par tests}
+
+\begin{frame}{Bien écrire nos tests}
+Un test se divise en trois parties:
+\begin{itemize}
+	\item Étant donner (\textit{given})
+	\item Quand (\textit{when})
+	\item Alors (\textit{then})
+\end{itemize}
+Cette segmentation permet une approche par exemple de comportement.
+% On doit pouvoir lire les parties comme du texte d'un livre
+
+% Source https://www.martinfowler.com/bliki/GivenWhenThen.html
+\end{frame}
+
+\begin{frame}{\textit{Given}}
+Il s'agit de notre état avant le début du comportement du scénario que l'on test.
+
+\begin{block}{Scénario: Calculer une valeur logarithmique}
+\textit{\textbf{Given}} Une valeur positive.
+\end{block}
+\end{frame}
+
+\begin{frame}{\textit{When}}
+Il s'agit du comportement à tester de notre scénario que l'on test.
+
+\begin{block}{Scénario: Calculer une valeur logarithmique}
+\textit{\textbf{When}} Application de la transformation logarithmique naturel. 
+\end{block}
+\end{frame}
+
+\begin{frame}{\textit{Then}}
+Il s'agit de la résultante de la transformation sur notre état initial.
+\begin{block}{Scénario: Calculer une valeur logarithmique}
+\textit{\textbf{Then}} Retourne la valeur transformer.
+\end{block}
+\end{frame}
+
+\begin{frame}{Bien utiliser nos tests}
+\begin{itemize}
+\item Documentation par comportement.
+\item Meilleure confiance lors d'intégration des composantes dans une architecture plus complexe.
+\item Rapidité de développement.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bien utiliser nos tests}
+\begin{itemize}
+\item Documentation par comportement.
+\item Meilleure confiance lors d'intégration des composantes dans une architecture plus complexe.
+\item Rapidité de développement.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\textit{Testability}}
+\begin{block}{}
+{\large ``Ideally, development-time tests should be written once and run lots of times.''}
+\vskip5mm
+\hspace*\fill{\small--- Richard Cotton}
+\end{block}
+\end{frame}
+
+\begin{frame}{\textit{Tell don't ask} en R}
+
+Laisser la propriété des données aux objets propriétaire.
+
+\begin{block}{}
+{\large ``[...] rather than asking an object for data and acting on that data, we should instead tell an object what to do. This encourages to move behavior into an object to go with the data.''}
+\vskip5mm
+\hspace*\fill{\small--- Martin Fowler}
+\end{block}
+\end{frame}
+
+\begin{frame}{\textit{Refactoring}}
+Il s'agit d'un processus en continu!
+\begin{block}{}
+{\large ``A change made to the internal structure of [your code] to make it easier to understand and cheaper to modify without changing its observable behavior.''}
+\vskip5mm
+\hspace*\fill{\small--- Martin Fowler}
+\end{block}
+\end{frame}
+
+%20 mins exercices
+\begin{frame}{\textit{Boy scout rule}}
+
+Nous sommes mutuellement responsables de la qualité du code.
+
+\begin{block}{}
+{\large ``Always leave the code you're editing a little better than you found it.''}
+\vskip5mm
+\hspace*\fill{\small--- Robert C. Martin}
+\end{block}
+\end{frame}
+
+%10 min buffer
+
+
+
+\end{document}
