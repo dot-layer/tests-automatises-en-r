@@ -14,4 +14,6 @@ Christopher Blier-Wong <christopher.blier-wong.1@ulaval.ca>
  - `README.md`: présent fichier;
  - `raquebec-atelier-tests-automatises-en-r.pdf`: diapositives de la formation;
  - `exercices/*`: séries d'exercices;
- - `_layouts`, `_config.yml` and `index.md`: Fichiers pour le site web.
+ - `_layouts`, `_config.yml` and `index.md`: Fichiers pour le site web;
+ - `beamercolorthemeulaval.sty` and `beamerthemeulaval.sty`: Fichiers de style pour Tex;
+ - `raquebec-atelier-tests-automatises-en-r.tex`: code source des diapositives.
