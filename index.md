@@ -25,4 +25,5 @@ Une connaissance intermédiaire de R est requise pour la formation. De plus, les
  
 ## Auteurs et animateurs
 David Beauchemin, étudiant à la maîtrise en informatique à l'Université Laval.
+
 Christopher Blier-Wong, étudiant au doctorat en actuariat à l'université Laval.
