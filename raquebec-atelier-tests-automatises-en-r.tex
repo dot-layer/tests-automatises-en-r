@@ -188,7 +188,7 @@ Quelques principes qui s'appliquent en \textsf{R} :
 \item Une fonction devrait avoir une seule tâche. 
 \item Les commentaires sont dangereux. 
 \begin{itemize}
-\item Si vous en avez besoin, le code n'est pas assez claire. 
+\item Si vous en avez besoin, le code n'est pas assez clair. 
 \item On oublie souvent de les mettre à jour. 
 \end{itemize}
 \item Le contrôle de version est votre ami. 
@@ -199,9 +199,9 @@ Assurance qualité, R et calcul scientifique, demain @ 13:55
 \begin{frame}{Les tests pour les scientifiques des données}
 En \textsf{R}, les principales tâches sont :
 \begin{itemize}
-\item D'interagir avec des données afin de découvrir des statistiques ou de l'information intéressante (exploration)
+\item D'interagir avec des données afin de calculer des statistiques ou de l'information intéressante (exploration)
 \item D'automatiser ces tâches d'exploration sur plusieurs jeux de données ou sur plusieurs tâches (programmation)
-\item De rassembler une collection de fonctions et publier un paquetage pour partager aux autres (partage)
+\item De rassembler un ensemble de fonctions et publier un paquetage pour partager aux autres (partage)
 \end{itemize}
 \end{frame}
 
@@ -260,8 +260,8 @@ testing is to make sure that the user hasn’t done something stupid.''}
 Les tests lors du développement
 \begin{itemize}
 \item Ce sont les tests unitaires. 
-\item On test le résultat d'une fonction.
-\item On exécute le test pour s'assurer qu'on a pas introduit de bogues.
+\item On teste le résultat d'une fonction.
+\item On exécute le test pour s'assurer qu'on n'a pas introduit de bogues.
 \item Rendu très simple avec testthat
 \item C'est l'objectif de l'atelier.
 \end{itemize}
@@ -277,11 +277,11 @@ Les tests lors du partage
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Quand est-ce que je dois écrire mon test ?}
+\begin{frame}{Quand dois-je écrire mon test ?}
 À quel moment est-ce que le test devrait être écrit ?
 \begin{enumerate}
 \item Après avoir écrit un script
-\item Avant avoir écrit la fonction
+\item Avant d'écrire la fonction
 \end{enumerate}
 \end{frame}
 
@@ -354,8 +354,8 @@ Situation 3 : quand on a mal programmé
 Fail fast, fail often
 \end{block}
 \begin{itemize}
-\item Plus souvent on test, plus il est façile de diagnostiquer le problème
-\item C'est facile faire des erreures. 
+\item Plus on teste souvent, plus il est facile de diagnostiquer le problème
+\item C'est facile faire des erreurs. 
 \end{itemize}
 \end{frame}
 
@@ -392,11 +392,11 @@ Avant d'utiliser \textit{testthat}, on écrit notre propre test à la main.
 \begin{frame}{L'interface générale d'un test \emph{testthat}}
 Un test \textit{testthat} se divise en deux parties:
 \begin{itemize}
-	\item Le nom du comportement tester %(\textit{desc})
+	\item Le nom du comportement testé %(\textit{desc})
 	\item Le code du test qui se sous-divise en deux parties: %(\textit{code}):
 	\begin{itemize}
-		\item  La valeur retournée par le comportement tester (\textit{optionnel selon la situation})
-		\item L'évaluation du comportement tester
+		\item  La valeur retournée par le comportement testé (\textit{optionnel selon la situation})
+		\item L'évaluation du comportement testé
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -413,13 +413,13 @@ retourne la valeur transformée.
 \begin{block}{Scénario: Calculer une valeur logarithmique}
 \begin{lstlisting}
 UNE_VALEUR_POSITIVE <- 1
-VALEUR_ATTENDU <- 0
+VALEUR_ATTENDUE <- 0
 
 test_that("Une valeur positive, 
             transformation ln, 
             valeur ln adéquate.",{
         actual <- log(UNE_VALEUR_POSITIVE)
-        expect_equal(expected = VALEUR_ATTENDU, actual, 
+        expect_equal(expected = VALEUR_ATTENDUE, actual, 
         		tolerance=1e-8)})
 \end{lstlisting}
 \end{block}
@@ -438,7 +438,7 @@ test_that("Une valeur positive,
 Rappel : un test avec \textit{testthat} est composé
 
 \begin{enumerate}
-\item d'un entête en caractères pour décrire le test
+\item d'une entête en caractères pour décrire le test
 \item du test, qui est composé
 \begin{enumerate}
 \item d'un appel à une fonction;
@@ -463,7 +463,7 @@ Rappel : un test avec \textit{testthat} est composé
 \item Un fichier de tests contient plusieurs tests
 \item Les tests sont organisés par hiérarchie : 
 \begin{itemize}
-    \item résultats attendus sont regroupés dans les tests
+    \item les résultats attendus sont regroupés dans les tests
     \item les tests sont regroupés dans des fichiers
     \item les fichiers sont regroupés dans des répertoires. 
 \end{itemize}
@@ -472,8 +472,8 @@ Rappel : un test avec \textit{testthat} est composé
 
 \begin{frame}{Les tests automatisés en R}
 \begin{itemize}
-\item Un résultat attendu décrit le résultat d'une computation. Il vérifie que le comportement est approprié. 
-\item Un test regroupe plusieurs résultats attendus pour une seule fonction / une seule fonctionnalité. Parfois appelé test unitaire. 
+\item Un résultat attendu décrit le résultat d'un calcul. Il vérifie que le comportement est approprié. 
+\item Un test regroupe plusieurs résultats attendus pour une seule fonction / une seule fonctionnalité, appelé test unitaire. 
 \item Un fichier regroupe plusieurs tests similaires ou reliés. 
 \end{itemize}
 \end{frame}
@@ -556,13 +556,12 @@ Rappel : un test avec \textit{testthat} est composé
 
 \begin{frame}{Quoi tester}
 \begin{block}{}
-Quand vous êtes tenté d'écrire quelque chose sous un \textit{print}, écrire un test à la place. -- Martin Fowler
+Quand vous êtes tentés d'écrire quelque chose avec un \textit{print}, écrire un test à la place. -- Martin Fowler
 \end{block}
 \begin{itemize}
 \item Comportements attendus
 \item Exemples négatifs
 \item Erreurs attendus
-\item 
 \end{itemize}
 \end{frame}
 
@@ -682,7 +681,14 @@ Nous sommes mutuellement responsables de la qualité du code.
 %10 min buffer
 
 \begin{frame}{Conclusion}
-Les tests automatisés en R sont beaucoup plus faciles avec \textit{testthat}. Les tests sont importants pour améliorer le développement de votre code informatique.
+\begin{itemize}
+	\item Les tests automatisés en R sont beaucoup plus faciles avec \textit{testthat}.
+	\item Les tests sont importants pour améliorer le développement de votre code informatique.
+\end{itemize}
+
+\begin{block}{}
+\centering Assurance qualité, R et calcul scientifique, demain @ 13:55 
+\end{block}
 \end{frame}
 
 
