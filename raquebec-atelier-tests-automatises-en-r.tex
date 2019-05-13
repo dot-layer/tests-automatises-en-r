@@ -580,7 +580,7 @@ Cette segmentation permet une approche par exemple de comportement.
 \end{frame}
 
 \begin{frame}{\textit{Given}}
-Il s'agit de notre état avant le début du comportement du scénario que l'on teste.
+Il s'agit de notre état avant le début du comportement du scénario que l'on teste. (précondition)
 
 \begin{block}{Scénario: Calculer une valeur logarithmique}
 \textit{\textbf{Given}} Une valeur positive.
@@ -588,7 +588,7 @@ Il s'agit de notre état avant le début du comportement du scénario que l'on t
 \end{frame}
 
 \begin{frame}{\textit{When}}
-Il s'agit du comportement à tester de notre scénario que l'on teste.
+Il s'agit du comportement à tester de notre scénario que l'on teste. (\emph{LE} test)
 
 \begin{block}{Scénario: Calculer une valeur logarithmique}
 \textit{\textbf{When}} Application de la transformation logarithmique naturelle.
@@ -602,9 +602,27 @@ Il s'agit de la résultante de la transformation sur notre état initial.
 \end{block}
 \end{frame}
 
+\begin{frame}[fragile]{Exemple \textit{testthat}}
+\begin{block}{Scénario: Calculer une valeur logarithmique}
+	\begin{lstlisting}
+	UNE_VALEUR_POSITIVE <- 1
+	VALEUR_ATTENDUE <- 0
+	
+	test_that("Une valeur positive,
+	transformation ln,
+	valeur ln adéquate.",{
+	actual <- log(UNE_VALEUR_POSITIVE)
+	expect_equal(expected = VALEUR_ATTENDUE, actual, 
+	tolerance=1e-8)})
+	\end{lstlisting}
+\end{block}
+% rajouter explication sur clarté de expected et actual!
+\end{frame}
+
 \begin{frame}{Bien utiliser nos tests}
 \begin{itemize}
 \item Documentation par comportement.
+\item Facilite la lisibilité.
 \item Meilleure confiance lors d'intégration des composantes dans une architecture plus complexe.
 \item Rapidité de développement.
 \end{itemize}
@@ -616,6 +634,16 @@ Il s'agit de la résultante de la transformation sur notre état initial.
 \vskip5mm
 \hspace*\fill{\small--- Richard Cotton}
 \end{block}
+\end{frame}
+
+\begin{frame}{\textit{Testability}}
+Que peut-on \textit{faire} avec la \textit{testability}
+\begin{itemize}
+	\item Ajouter des fonctionnalités rapidement.
+	\item Pouvoir partager son code avec confiance.
+	\item Créer un paquetage et contribuer à la collectivité R.
+	\item Ne pas être obligé de \textit{jeter} son code.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{\textit{Tell don't ask} en R}
@@ -640,13 +668,27 @@ moyenne_valeurs_supp_medianne(data)
 \end{frame}
 
 \begin{frame}{\textit{Refactoring}}
-Il s'agit d'un processus en continu!
 \begin{block}{}
 {\large ``A change made to the internal structure of [your code] to make it easier to understand and cheaper to modify without changing its observable behavior.''}
 \vskip5mm
 \hspace*\fill{\small--- Martin Fowler}
 \end{block}
 \end{frame}
+
+\begin{frame}[fragile]{\textit{Refactoring}}
+\begin{block}{}
+\begin{lstlisting}
+mean(data[data > median(data)])
+
+moyenne_valeurs_supp_medianne(data)
+\end{lstlisting}
+\end{block}
+
+Il s'agit d'un processus en continu!
+\end{frame}
+
+
+
 
 \begin{frame}{Exercices}
 \begin{block}{\textit{Refactoring} de code}
