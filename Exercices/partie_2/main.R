@@ -4,14 +4,14 @@ library(testthat)
 # Exercices ---------------------------------------------------------------
 
 # Dans ce document, on présente une fonction qui calcule des moyennes. La
-# fonction retourne les bonnes valeures pour un vecteur de longueur 
-# positive
+# fonction retourne les bonnes valeurs pour un vecteur de longueur 
+# positive.
 
 # 1. Écrire des tests dans le fichier test/test_main.R avec la fonction
 #    calculer_moyennes
 # 2. La fonction ne retourne pas la bonne valeur si elle inclut un NA. 
-#    
-
+# 3. Ajouter d'autres tests. Pensez à des cas limite, on en discutera
+#    à la fin de cette session d'exercices. 
 
 calculer_moyennes <- function(x) {
     
