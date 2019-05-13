@@ -19,13 +19,13 @@ ls("package:testthat", pattern = "^expect")
 
 # Exécuter les tests ------------------------------------------------------
 
-test_file("tests/test_1.R")
-test_dir("tests/")
+test_file(file.path("Exemples", "tests", "test_1.R"))
+test_dir(file.path("Exemples", "tests"))
 
-
-test_file("Exemples/tests/test_1.R", reporter = "summary")
-test_file("Exemples/tests/test_1.R", reporter = "minimal")
-rapport_test <- test_file("Exemples/tests/test_1.R", reporter = "silent")
+test_file(file.path("Exemples", "tests", "test_1.R"), reporter = "summary")
+test_file(file.path("Exemples", "tests", "test_1.R"), reporter = "summary")
+test_file(file.path("Exemples", "tests", "test_1.R"), reporter = "minimal")
+rapport_test <- test_file(file.path("Exemples", "tests", "test_1.R"), reporter = "silent")
 rapport_test
 
 # Plus d'information sur les tests ----------------------------------------

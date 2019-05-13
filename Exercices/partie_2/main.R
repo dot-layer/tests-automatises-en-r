@@ -39,5 +39,5 @@ calculer_moyennes <- function(x) {
     c(valeur1, valeur2, valeur3, valeur4, valeur5)
 }
 
-test_file("Exercices/partie_2/tests/test_main.R")
-# test_dir("Exercices/partie_2/tests/")
+test_file(file.path("Exercices", "partie_2", "tests", "test_main.R"))
+# test_dir(file.path("Exercices", "partie_2", "tests"))
