@@ -116,10 +116,6 @@ BoldItalicFont=Muli-BoldItalic.ttf]{Muli-Regular.ttf}%
 
 
 
-
-
-
-
 \begin{document}
 
 \begin{frame}[label=titre, plain]
@@ -181,21 +177,6 @@ Un code propre permet de collaborer facilement et de réduire les bogues.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Le \textit{clean code}}
-Quelques principes qui s'appliquent en \textsf{R} :
-\begin{itemize}
-\item Nommer une variable est une tâche très importante.
-\item Une fonction devrait avoir une seule tâche.
-\item Les commentaires sont dangereux.
-\begin{itemize}
-\item Si vous en avez besoin, le code n'est pas assez clair.
-\item On oublie souvent de les mettre à jour.
-\end{itemize}
-\item Le contrôle de version est votre ami.
-\end{itemize}
-Assurance qualité, R et calcul scientifique, demain @ 13:55
-\end{frame}
-
 \begin{frame}{Les tests pour les scientifiques des données}
 En \textsf{R}, les principales tâches sont :
 \begin{itemize}
@@ -209,9 +190,9 @@ En \textsf{R}, les principales tâches sont :
 \framesubtitle{Exploration}
 Les tests ne sont pas nécessaires si les tâches d'exploration
 \begin{itemize}
-\item comptent quelques lignes seulement;
-\item sont simples;
-\item font seulement appel à des fonctions pré-définies.
+	\item comptent quelques lignes seulement;
+	\item sont simples;
+	\item font seulement appel à des fonctions prédéfinies.
 \end{itemize}
 \end{frame}
 
@@ -221,7 +202,7 @@ On désire des tests dans les tâches de programmation pour
 \begin{itemize}
 \item s'assurer que notre fonction a le comportement voulu
 \item s'assurer qu'on ne brise pas quelque chose qui fonctionnait dans le passé
-%\item avoir une documentation qui défini les comportements -DB
+\item avoir une documentation qui défini les comportements
 \end{itemize}
 Les tests pendant la programmation servent à vérifier que le programmeur n'a pas fait d'erreur.
 \end{frame}
@@ -258,11 +239,12 @@ testing is to make sure that the user hasn’t done something stupid.''}
 \framesubtitle{Les tests pour s'aider}
 Les tests lors du développement
 \begin{itemize}
-\item Ce sont les tests unitaires.
-\item On teste le résultat d'une fonction.
-\item On exécute le test pour s'assurer qu'on a pas introduit de bogues.
-\item Rendu très simple avec testthat
-\item C'est l'objectif de l'atelier.
+\item Ils incluent les tests unitaires
+\item On isole chaque partie d'un programme en fonctions
+\item On valide que le comportement de chaque fonction est bon
+\item On exécute les tests pour s'assurer qu'on n'a pas introduit de bogues
+\item C'est très simple avec testthat
+\item C'est l'objectif de l'atelier
 \end{itemize}
 \end{frame}
 
@@ -275,6 +257,22 @@ Les tests lors du partage
 \item Paquetage assertive.
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Qu'est-ce qu'un test unitaire ?}
+\begin{itemize}
+	\item Comme dans un examen, on souhaite valider le résultat d'un calcul
+	\item Souvent, on teste le comportement d'une seule fonction
+	\item Exemples : 
+	\begin{itemize}
+		\item valider que \texttt{somme(1, 1) == 2}
+		\item valider que \texttt{somme("a", "b")} retourne une erreur
+		\item valider qu'une fonction qui calcule un pourcentage retourne une valeur entre 0 et 100
+		\item valider qu'une fonction qui calcule une proportion retourne une valeur entre 0 et 1
+		\item valider que la valeur maximale d'un pourcentage est 100 et que la valeur maximale d'une proportion est 1
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}{Quand dois-je écrire mon test ?}
 À quel moment est-ce que le test devrait être écrit ?
@@ -290,7 +288,7 @@ On considère la situation suivante :
 \begin{enumerate}
 \item On définit une tâche
 \item On se donne des paramètres jouets
-\item On constuit un script pour donner la réponse attendue
+\item On construit un script pour donner la réponse attendue
 \item On extrait une fonction du script
 \item On efface le script
 \end{enumerate}
@@ -354,7 +352,7 @@ Fail fast, fail often
 \end{block}
 \begin{itemize}
 \item Plus on teste souvent, plus il est facile de diagnostiquer le problème
-\item C'est facile faire des erreurs.
+\item C'est facile, faire des erreurs.
 \end{itemize}
 \end{frame}
 
@@ -368,19 +366,19 @@ Faire des exemples de tests dans un atelier est difficile.
 \item Si les programmes sont trop simples, ça ne vaut pas la peine de faire tests.
 \end{itemize}
 
-Tester son code est simple. La difficulté est développer l'habitude.
+Tester son code est simple. La difficulté est développer de l'habitude.
 \end{frame}
 
 \begin{frame}{Un premier test unitaire}
 Avant d'utiliser \textit{testthat}, on écrit notre propre test à la main.
 
 \begin{block}{La moyenne géométrique}
-\gotoR{exercices/partie\_1/exercices\_1.R}
+\gotoR{Exercices/partie\_1/exercices\_1.R}
 \begin{equation*}
 \left(\prod_{i = 1}^{n}x_i\right)^{\frac{1}{n}}  =
 (-1)^m \exp\left(\frac{1}{n}\sum_{i = 1}^{n}\ln |x_i|\right)
 \end{equation*}
-\centering Où m est le nombre de valeurs négatives.
+\centering Où $m$ est le nombre de valeurs négatives dans le vecteur $x$.
 \end{block}
 \end{frame}
 
@@ -427,7 +425,7 @@ test_that("Une valeur positive,
 
 \begin{frame}{Exercices \textit{testthat}}
 \begin{block}{Scénario: Moyenne géométrique}
-\gotoR{exercices/partie\_1/exercices\_2.R}
+\gotoR{Exercices/partie\_1/exercices\_2.R}
 \end{block}
 \end{frame}
 
@@ -437,7 +435,7 @@ test_that("Une valeur positive,
 Rappel : un test avec \textit{testthat} est composé
 
 \begin{enumerate}
-\item d'une entête en caractères pour décrire le test
+\item d'un entête en caractères pour décrire le test
 \item du test, qui est composé
 \begin{enumerate}
 \item d'un appel à une fonction;
@@ -458,7 +456,7 @@ Rappel : un test avec \textit{testthat} est composé
 \begin{frame}{La structure de tests}
 \framesubtitle{La structure de fichiers}
 \begin{itemize}
-\item Placer tous les fichiers test dans un répertoire
+\item Placer tous les fichiers de test dans un répertoire
 \item Un fichier de tests contient plusieurs tests
 \item Les tests sont organisés par hiérarchie :
 \begin{itemize}
@@ -471,8 +469,8 @@ Rappel : un test avec \textit{testthat} est composé
 
 \begin{frame}{Les tests automatisés en R}
 \begin{itemize}
-\item Un résultat attendu décrit le résultat d'une computation. Il vérifie que le comportement est approprié.
-\item Un test regroupe plusieurs résultats attendus pour une seule fonction / une seule fonctionnalité. Parfois appelé test unitaire.
+\item Un résultat attendu décrit le résultat d'un calcul. Il vérifie que le comportement est approprié.
+\item Un test regroupe plusieurs résultats attendus pour une seule fonction / une seule fonctionnalité. C'est parfois appelé un test unitaire.
 \item Un fichier regroupe plusieurs tests similaires ou reliés.
 \end{itemize}
 \end{frame}
@@ -480,7 +478,7 @@ Rappel : un test avec \textit{testthat} est composé
 \begin{frame}{Les résultats attendus}
 \begin{itemize}
 \item Un résultat attendu est le plus petit niveau de test.
-\item Il commence par expect\_
+\item Il commence par \texttt{expect\_}
 \item Il contient deux arguments : le résultat actuel, et le résultat attendu
 \item Les deux arguments doivent correspondre.
 \end{itemize}
@@ -489,20 +487,15 @@ Rappel : un test avec \textit{testthat} est composé
 \begin{frame}{Les résultats attendus}
 \framesubtitle{Les \emph{expect\_}}
 \begin{itemize}
-\item expect\_equal
-\item expect\_identical
-\item expect\_match
-\item expect\_output
-\item expect\_error
-\item expect\_warning
-\item expect\_true, expect\_false et expect\_null
+\item \texttt{expect\_equal}
+\item \texttt{expect\_identical}
+\item \texttt{expect\_match}
+\item \texttt{expect\_output}
+\item \texttt{expect\_error}
+\item \texttt{expect\_warning}
+\item \texttt{expect\_true}, \texttt{expect\_false} et \texttt{expect\_null}
+\item \texttt{ls("package:testthat", pattern = "\^{}expect")}
 \end{itemize}
-\end{frame}
-
-
-\begin{frame}{Les résultats attendus}
-\framesubtitle{Les \emph{expect\_}}
-{\ttfamily ls("package:testthat", pattern = "\^{}expect")}
 \end{frame}
 
 \begin{frame}{Les tests}
@@ -560,7 +553,7 @@ Quand vous êtes tentés d'écrire quelque chose avec un \textit{print}, écrire
 \begin{itemize}
 \item Comportements attendus
 \item Exemples négatifs
-\item Erreurs attendus
+\item Erreurs attendues
 \end{itemize}
 \end{frame}
 
@@ -587,7 +580,7 @@ Cette segmentation permet une approche par exemple de comportement.
 \end{frame}
 
 \begin{frame}{\textit{Given}}
-Il s'agit de notre état avant le début du comportement du scénario que l'on test.
+Il s'agit de notre état avant le début du comportement du scénario que l'on teste.
 
 \begin{block}{Scénario: Calculer une valeur logarithmique}
 \textit{\textbf{Given}} Une valeur positive.
@@ -689,7 +682,5 @@ Nous sommes mutuellement responsables de la qualité du code.
 \centering Assurance qualité, R et calcul scientifique, demain @ 13:55 
 \end{block}
 \end{frame}
-
-
 
 \end{document}

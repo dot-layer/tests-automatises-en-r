@@ -13,13 +13,10 @@ test_that(
 context(desc = "Tester des erreurs")
 # Par exemple, un vecteur vide
 
-test_that("testst", 
+test_that("Tester que calculer_moyennes avec vecteur vide retourne un erreur", 
           {
-            expect_warning(calculer_moyennes(c()))
+            expect_error(calculer_moyennes(c()))
           })
-
-context(desc = "Tester des erreurs")
-
 
 context(desc = "Tester calculer_moyennes en présence de NA")
 

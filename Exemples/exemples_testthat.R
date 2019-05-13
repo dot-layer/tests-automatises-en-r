@@ -17,16 +17,15 @@ expect_error(mean())
 ls("package:testthat", pattern = "^expect")
 
 
-
 # Exécuter les tests ------------------------------------------------------
 
-test_file("Exemples/tests/fichier_de_tests.R")
-test_dir("Exemples/tests/")
+test_file("tests/test_1.R")
+test_dir("tests/")
 
 
-test_file("Exemples/tests/fichier_de_tests.R", reporter = "summary")
-test_file("Exemples/tests/fichier_de_tests.R", reporter = "minimal")
-rapport_test <- test_file("Exemples/tests/fichier_de_tests.R", reporter = "silent")
+test_file("Exemples/tests/test_1.R", reporter = "summary")
+test_file("Exemples/tests/test_1.R", reporter = "minimal")
+rapport_test <- test_file("Exemples/tests/test_1.R", reporter = "silent")
 rapport_test
 
 # Plus d'information sur les tests ----------------------------------------
