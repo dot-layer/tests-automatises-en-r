@@ -602,17 +602,17 @@ Il s'agit de la résultante de la transformation sur notre état initial.
 
 \begin{frame}[fragile]{Exemple \textit{testthat}}
 \begin{block}{Scénario: Calculer une valeur logarithmique}
-	\begin{lstlisting}
-	UNE_VALEUR_POSITIVE <- 1
-	VALEUR_ATTENDUE <- 0
+\begin{lstlisting}
+UNE_VALEUR_POSITIVE <- 1
+VALEUR_ATTENDUE <- 0
 	
-	test_that("Une valeur positive,
-	transformation ln,
-	valeur ln adéquate.",{
-	actual <- log(UNE_VALEUR_POSITIVE)
-	expect_equal(expected = VALEUR_ATTENDUE, actual, 
-	tolerance=1e-8)})
-	\end{lstlisting}
+test_that("Une valeur positive,
+			transformation ln,
+			valeur ln adéquate.",{
+		actual <- log(UNE_VALEUR_POSITIVE)
+		expect_equal(expected = VALEUR_ATTENDUE, actual, 
+				tolerance=1e-8)})
+\end{lstlisting}
 \end{block}
 % rajouter explication sur clarté de expected et actual!
 \end{frame}
