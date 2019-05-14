@@ -7,7 +7,7 @@ vecteur_4 <- c(1, 4, 9, NA, -1)
 
 # Exercices ---------------------------------------------------------------
 
-# À partir de votre moyenne_geo de l'exercice précédent, transformer les 
+# À partir de votre fonction moyenne_geo de l'exercice précédent, transformer les 
 # tests en expression test_that.
 
 valeur_attendue_vecteur_1 <- 2.605171
