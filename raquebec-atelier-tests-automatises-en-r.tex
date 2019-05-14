@@ -534,7 +534,7 @@ Rappel : un test avec \textit{testthat} est composé
 \item \texttt{test\_file("test-file.R", reporter = "summary")}
 \item \texttt{"minimal"} : une ligne
 \item \texttt{"stop"} : arrêt à l'échec
-\item \texttt{"silent"} : aucun, mais retourne une
+\item \texttt{"silent"} : aucun, mais retourne une ???
 \item \texttt{"rstudio"} : Entre summary et minimal : une ligne par échec
 \item \texttt{"tap"} : "Test Anything Protocol"
 \item \texttt{"check"} : Pour les paquetages
@@ -553,7 +553,9 @@ Rappel : un test avec \textit{testthat} est composé
 
 \begin{frame}{Quoi tester}
 \begin{block}{}
-Quand vous êtes tentés d'écrire quelque chose avec un \textit{print}, écrire un test à la place. -- Martin Fowler
+{Quand vous êtes tentés d'écrire quelque chose avec un \textit{print}, écrire un test à la place. }
+\vskip5mm
+\hspace*\fill{\small--- Martin Fowler}
 \end{block}
 \begin{itemize}
 \item Comportements attendus
@@ -567,6 +569,12 @@ Quand vous êtes tentés d'écrire quelque chose avec un \textit{print}, écrire
 \item Quelle valeur a fait échouer la fonction ?
 \item Quelle itération de la boucle a échoué ?
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Exercices \textit{testthat}}
+\begin{block}{Scénario: calcul moyennes}
+	\gotoR{Exercices/partie\_2/main.R}
+\end{block}
 \end{frame}
 
 \section[\'Ecrire du code testable : conseils et d\'eveloppement conduit par tests]{\'Ecrire du code testable : conseils et d\'eveloppement conduit par tests}
